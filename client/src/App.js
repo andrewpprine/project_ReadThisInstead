@@ -26,3 +26,15 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+// News API
+var newsURL = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=bfcf40411ab446aea8b4959454740fdc';
+var req = new Request(newsURL);
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+    })
