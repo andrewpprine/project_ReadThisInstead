@@ -1,40 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./components/navbar";
+import Feed from "./components/feed";
+import "./App.css";
 
 class App extends Component {
+  state = {};
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NavBar />
+        <h1>Hey, You should Read This Instead</h1>
+        <Feed />
       </div>
     );
   }
 }
 
-export default App;
-
-
-
 // News API
-var newsURL = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' +
-          'apiKey=bfcf40411ab446aea8b4959454740fdc';
-var req = new Request(newsURL);
-fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-    })
+let newsURL =
+  "https://newsapi.org/v2/top-headlines?" +
+  "country=us&" +
+  "apiKey=bfcf40411ab446aea8b4959454740fdc";
+let req = new Request(newsURL);
+fetch(req).then(function(response) {
+  console.log(response.json());
+});
+
+export default App;
