@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Feed from "./components/feed";
+import Articles from "./components/articles";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <h1>Hey, You Should Read This Instead</h1>
-
-        <Feed />
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar />
+          <Switch>
+            <Route path="/" component={Feed} exact />
+            <Route path="/articles" component={Articles} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
-// News API
-// fetchNews = () => {
-
-// };
 
 export default App;
