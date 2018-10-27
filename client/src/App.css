@@ -2,11 +2,15 @@
   text-align: center;
 }
 
-.Feed {
+/* .Feed {
   width: "500px";
   height: "500px";
-}
+} */
 
 span button {
   margin: "5px";
+}
+
+.link {
+  margin-right: "2px";
 }

@@ -3,12 +3,10 @@ import "../App.css";
 
 class Feed extends Component {
   state = {
-    artTags: [, ,]
+    id: [1, 2, 3],
+    artTags: [],
+    artUrls: []
   };
-
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
     let newsURL =
@@ -17,6 +15,7 @@ class Feed extends Component {
       "apiKey=bfcf40411ab446aea8b4959454740fdc";
     let req = new Request(newsURL);
     let arr = [];
+    let urls = [];
 
     return fetch(req).then(response => {
       console.log(
@@ -25,11 +24,15 @@ class Feed extends Component {
           console.log(data);
           for (i = 0; i < 3; i++) {
             let output = data.articles[i].title;
-
+            let urlsOut = data.articles[i].url;
             arr.push(output);
+            urls.push(urlsOut);
+            console.log(urls);
             this.setState({
-              artTags: arr
+              artTags: arr,
+              artUrls: urls
             });
+            console.log(this);
           }
         })
       );
@@ -54,6 +57,7 @@ class Feed extends Component {
             let output = data.articles[ranNum].title;
 
             arr.push(output);
+            console.log(arr);
             this.setState({
               artTags: arr
             });
@@ -63,14 +67,10 @@ class Feed extends Component {
     });
   };
 
-  createButton = () => {
-    console.log("creat button func");
-  };
-
   render() {
     return (
       <React.Fragment>
-        <div class="container">
+        <div class="container App">
           <div class="card border-dark mb-3" style={{ maxwidth: 18 + "rem" }}>
             <h3 class="card-header">What's New Today?</h3>
             <div class="card-body">
@@ -79,7 +79,12 @@ class Feed extends Component {
                   <li key={tag} style={{ listStyle: "none" }}>
                     <div>
                       {tag}
-                      <button class="btn btn-success m-2">Check It Out</button>
+                      <button
+                        key={this.state.id.map(id => id)}
+                        class="btn btn-success m-2"
+                      >
+                        Check It Out
+                      </button>
                     </div>
                   </li>
                 ))}

@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
 import * as serviceWorker from "./serviceWorker";
-import { Link } from "react-router";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
