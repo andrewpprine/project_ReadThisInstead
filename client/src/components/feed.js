@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 class Feed extends Component {
   state = {
-    id: [1, 2, 3],
-    artTags: [],
-    artUrls: []
+    art: [
+      { id: 1, tags: "", urls: "" },
+      { id: 2, tags: "", urls: "" },
+      { id: 3, tags: "", urls: "" }
+    ]
   };
 
   componentDidMount() {
@@ -14,23 +17,23 @@ class Feed extends Component {
       "country=us&" +
       "apiKey=bfcf40411ab446aea8b4959454740fdc";
     let req = new Request(newsURL);
-    let arr = [];
-    let urls = [];
+    let art = [
+      { id: 1, tags: "", urls: "" },
+      { id: 2, tags: "", urls: "" },
+      { id: 3, tags: "", urls: "" }
+    ];
 
     return fetch(req).then(response => {
       console.log(
         response.json().then(data => {
           let i;
-          console.log(data);
           for (i = 0; i < 3; i++) {
             let output = data.articles[i].title;
             let urlsOut = data.articles[i].url;
-            arr.push(output);
-            urls.push(urlsOut);
-            console.log(urls);
+            art[i].tags = output;
+            art[i].urls = urlsOut;
             this.setState({
-              artTags: arr,
-              artUrls: urls
+              art: art
             });
             console.log(this);
           }
@@ -39,27 +42,30 @@ class Feed extends Component {
     });
   }
 
-  refreshNews = product => {
+  refreshNews = () => {
     let newsURL =
       "https://newsapi.org/v2/top-headlines?" +
       "country=us&" +
       "apiKey=bfcf40411ab446aea8b4959454740fdc";
     let req = new Request(newsURL);
-    let arr = [];
+    let art = [
+      { id: 1, tags: "", urls: "" },
+      { id: 2, tags: "", urls: "" },
+      { id: 3, tags: "", urls: "" }
+    ];
 
     return fetch(req).then(response => {
       console.log(
         response.json().then(data => {
           let i;
-
           for (i = 0; i < 3; i++) {
             let ranNum = Math.floor(Math.random() * 20);
             let output = data.articles[ranNum].title;
-
-            arr.push(output);
-            console.log(arr);
+            let urlsOut = data.articles[i].url;
+            art[i].tags = output;
+            art[i].urls = urlsOut;
             this.setState({
-              artTags: arr
+              art: art
             });
           }
         })
@@ -67,25 +73,34 @@ class Feed extends Component {
     });
   };
 
+  // directBut = () => {
+  //   return <Link to="/articles" /></Link>;
+
+  // };
+
   render() {
     return (
       <React.Fragment>
         <div class="container App">
-          <div class="card border-dark mb-3" style={{ maxwidth: 18 + "rem" }}>
+          <div
+            class="card border-dark mb-3 m-5"
+            style={{ maxwidth: 18 + "rem" }}
+          >
             <h3 class="card-header">What's New Today?</h3>
             <div class="card-body">
               <ul>
-                {this.state.artTags.map(tag => (
-                  <li key={tag} style={{ listStyle: "none" }}>
-                    <div>
-                      {tag}
+                {this.state.art.map(x => (
+                  <li style={{ listStyle: "none" }}>
+                    <div>{x.tags}</div>
+                    <Link to={this.state.art[x.id - 1].urls}>
                       <button
-                        key={this.state.id.map(id => id)}
+                        key={x.urls}
                         class="btn btn-success m-2"
+                        data-id={x.urls}
                       >
                         Check It Out
                       </button>
-                    </div>
+                    </Link>
                   </li>
                 ))}
               </ul>
