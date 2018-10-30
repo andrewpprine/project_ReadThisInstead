@@ -88,7 +88,7 @@ class Feed extends Component {
           >
             <h3 class="card-header">What's New Today?</h3>
             <div class="card-body">
-              <ul>
+              <ul class="list-unstyled">
                 {this.state.art.map(x => (
                   <li style={{ listStyle: "none" }}>
                     <div>{x.tags}</div>
