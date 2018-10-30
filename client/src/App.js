@@ -3,7 +3,6 @@ import NavBar from "./components/navbar";
 import Feed from "./components/feed";
 import Articles from "./components/articles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import article from "./components/article";
 
 import "./App.css";
 
