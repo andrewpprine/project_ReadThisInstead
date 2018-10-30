@@ -92,15 +92,15 @@ class Feed extends Component {
                 {this.state.art.map(x => (
                   <li style={{ listStyle: "none" }}>
                     <div>{x.tags}</div>
-                    <Link to={this.state.art[x.id - 1].urls}>
-                      <button
-                        key={x.urls}
-                        class="btn btn-success m-2"
-                        data-id={x.urls}
-                      >
-                        Check It Out
-                      </button>
-                    </Link>
+                    <a
+                      role="button"
+                      href={x.urls}
+                      key={x.urls}
+                      class="btn btn-success m-2"
+                      data-id={x.urls}
+                    >
+                      Check It Out
+                    </a>
                   </li>
                 ))}
               </ul>
