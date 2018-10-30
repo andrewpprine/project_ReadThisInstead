@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//Still need to work on this part of the app, where we scrape with Nightmare and then pass the scraped article to the frontend.
 class article extends Component {
   fun = () => {
     console.log(this);
